@@ -1,51 +1,54 @@
-Dicionarios de dados para leitura no R das pesquisas PNAD, PME e POF do IBGE.
-Link para o pacote no site do CRAN: 
+
+
+# Dicionarios IBGE
+
+Dicionarios de dados para leitura no R das pesquisas PNAD, PME e POF
+do IBGE.  Link para o pacote no site do CRAN:
+
 http://cran.r-project.org/web/packages/dicionariosIBGE/index.html
 
 
+## Equipe
 
-USANDO O PACOTE:
-================
+ * Alexandre Rademaker  (EMAp/FGV)
+ * Alexandre Miranda Coelho (EBAPE/FGV)
+
+
+## Usando o pacote
 
 Para instalar automaticamente a versao mais recente disponivel no
 CRAN, use o seguinte comando no R:
 
-install.packages("dicionariosIBGE")
+    install.packages("dicionariosIBGE")
 
 Para carregar o pacote:
 
-library(dicionariosIBGE)
+    library(dicionariosIBGE)
 
 Listando os dicionarios disponiveis no pacote:
 
-data(package = "dicionariosIBGE")
+    data(package = "dicionariosIBGE")
 
 Para carregar os dicionarios de uma pesquisa, utilize o comando data e
 nome do dataset da pesquisa. Este nome pode ser visto com o comando
 anterior. Por exemplo:
 
-data(dicPNAD1993)
+    data(dicPNAD1993)
 
 
-
-GERANDO E VERIFICANDO O PACOTE A PARTIR DO CODIGO FONTE:
-========================================================
-
-Para verificar a validade do pacote, usar:
-
-R CMD check [DIRETORIO]
+## Compilando e instalando o pacote a partir do fonte
 
 Para gerar um .tar.gz instalavel:
 
-R CMD build [DIRETORIO]
+    R CMD build [DIRETORIO]
 
 Instalando o pacote:
 
-R CMD INSTALL pkg.tar.gz
+    R CMD INSTALL pkg.tar.gz
 
 Ou, no R:
 
-install.packages("pkg.tar.gz", repos=NULL)
+    install.packages("pkg.tar.gz", repos=NULL)
 
 
 No Windows, para instalar o pacote .tar.gz e necessario passar o
@@ -56,3 +59,5 @@ Tambem e possivel no Windows instalar a partir de um arquivo .zip com
 o conteudo do diretorio apos instalado (pacote pre-compilado). Neste
 caso, nao e necessario nenhum programa no path e nem o parametro
 type="source".
+
+
