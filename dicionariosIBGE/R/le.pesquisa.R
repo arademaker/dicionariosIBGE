@@ -1,6 +1,5 @@
-le.pesquisa <-
-function (dicionario, pathname.in, pathname.out = NA, codigos, 
-            tbloco = 2000, rotulos = NULL) 
+le.pesquisa <- function (dicionario, pathname.in, pathname.out = NA, codigos, 
+                         tbloco = 2000, rotulos = NULL) 
 {
     inicios <- numeric(0)
     tamanhos <- numeric(0)
@@ -52,7 +51,6 @@ function (dicionario, pathname.in, pathname.out = NA, codigos,
         cat("\nDados salvos em:\n", pathname.out)
         cat("\n\n")
     }
-    cat("\n\n\n")
+    cat("\n\n")
     dados
 }
-
