@@ -1,43 +1,63 @@
 le.pesquisa <-
-function(dicionario, pathname.in,codigos,rotulos=NULL){
-    
-    dicvar <- dicionario[grep(paste(codigos,collapse="|"),dicionario[,2]),c(1:3)]
-    
-
-    width <- function(codigos,dicvar){
-      width <- c()
-      ult <- 1
-      for(i in 1:length(dicvar[,2])){
-        if(ult==dicvar[i,1])
-          { width <- c(width,dicvar[i,3])}
-        else {
-          width <- c(width,-(dicvar[i,1]-ult))
-          width <- c(width,dicvar[i,3])
-        }
-        ult <- dicvar[i,1]+dicvar[i,3]
+function (dicionario, pathname.in, codigos, 
+                         tbloco = 2000, rotulos = NULL) 
+{
+  inicios <- numeric(0)
+  tamanhos <- numeric(0)
+  for (k in 1:length(codigos)) {
+    if (all(dicionario$cod != codigos[k])) 
+      stop(paste("Vari\xe1vel", codigos[k], "n\xe3o existe em", 
+                 pathname.in))
+    inicios[k] <- dicionario$inicio[dicionario$cod == codigos[k]]
+    tamanhos[k] <- dicionario$tamanho[dicionario$cod == codigos[k]]
+  }
+  arq <- file(pathname.in)
+  open(arq)
+  cont = 1
+  dados <- numeric(0)
+  dadostemp2 <- numeric(0)
+  nlidos = 0
+  while (cont) {
+    dadostemp <- scan(file = arq, what = "", sep = ";", nlines = tbloco, 
+                      quiet = TRUE)
+    coluna <- substr(dadostemp, inicios[1], inicios[1] + 
+                     tamanhos[1] - 1)
+    dadostemp2 <- data.frame(type.convert(coluna))
+    if (length(inicios) > 1) 
+      for (k in 2:length(inicios)) {
+        coluna <- substr(dadostemp, inicios[k], inicios[k] + 
+                         tamanhos[k] - 1)
+        dadostemp2 <- cbind(dadostemp2, data.frame(type.convert(coluna)))
       }
+    if (length(dadostemp) < tbloco) 
+      cont = 0
+    rm(dadostemp)
+    dados <- rbind(dados, dadostemp2)
+    nlidos <- nrow(dados)
+  }
+  close(arq)
+  rm(dadostemp2)
+  
+  cat("\n", nrow(dados), "rows  x ", ncol(dados), "columms\n")
+  colnames(dados) <- codigos
+  if(length(rotulos)!=0){
+    rotvar <- rotulos[grep(paste(codigos,collapse="|"),rotulos[,1]),]
+    for(n in c(1:ncol(dados))){
       
-      width
-    }
-
-    output <- read.fwf(pathname.in, widths=width(codigos,dicvar),col.names=dicvar$codigo)
-
-    if(length(rotulos)!=0){
-      rotvar <- rotulos[grep(paste(codigos,collapse="|"),rotulos[,1]),]
-      for(n in c(1:ncol(output))){
-        
-        num <- grep(colnames(output[n]),rotvar[,1])
-        if(length(num)!=0){
-          for(i in num){
-            
-            result <- grep(rotvar[i,2],output[,n])
-            if(length(result)!=0){
-              output[result,n] <- rotvar[i,3]
-            }
+      num <- grep(colnames(dados[n]),rotvar[,1])
+      if(length(num)!=0){
+        for(i in num){
+          
+          result <- grep(rotvar[i,2],dados[,n])
+          if(length(result)!=0){
+            dados[result,n] <- rotvar[i,3]
           }
         }
       }
     }
-    output
-  }
+  } 
+
+  dados
+  
+}
 
