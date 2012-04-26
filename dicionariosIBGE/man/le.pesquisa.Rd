@@ -61,7 +61,7 @@ that your computer has at least 1GB of memory
   http://www.ibge.gov.br
 }
 \author{
-  Alexandre Rademaker \email{arademaker@gmail.com}
+  Alexandre Rademaker \email{alexandre.rademaker@fgv.br}
   Rafael F. Haeusler \email{rafael.f.haeusler@gmail.com}
 }
 }
