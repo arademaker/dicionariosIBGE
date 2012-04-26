@@ -1,127 +1,88 @@
 \name{le.pesquisa}
 \alias{le.pesquisa}
 
-\title{
-%%  ~~function to do ... ~~
-}
+\title{Function that reads microdata from the IBGE research}
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+ Performs a block read, recovering only the wanted variables.  As an
+ example, to tabulate data from PNAD on
+ education, needs only the variables related to this topic (years of
+ study, education network, ...), and other variables more general such
+ as age and sex.
 }
 \usage{
 le.pesquisa(dicionario, pathname.in, codigos, tbloco = 2000, rotulos = NULL)
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
   \item{dicionario}{
-%%     ~~Describe \code{dicionario} here~~
+  A data-frame with 4 or 6 columns, supplied with this package. Contains
+  the identification and description of all variables contained in the
+  microdata file as well as other necessary information for
+  reading. Each file must have a specific microdata dictionary.
 }
   \item{pathname.in}{
-%%     ~~Describe \code{pathname.in} here~~
+  The name of the file which the data are to be read from. 
 }
   \item{codigos}{
-%%     ~~Describe \code{codigos} here~~
+  Array of characters with codes of the wanted variables to be read, as
+  specified in dictionary.
 }
   \item{tbloco}{
-%%     ~~Describe \code{tbloco} here~~
+  Integer that indicates the block size read. If not specified will be
+  read in 2000 lines ever, an appropriate amount of a RAM 512MB
+  computer. For a computer with less than 512MB of memory, \code{tbloco}
+  must be less than 2000. For a machine with more 512MB of memory,
+  \code{tbloco} may be larger than 2000, reducing the read time.
 }
   \item{rotulos}{
-%%     ~~Describe \code{rotulos} here~~
+  A optional variable formed by a data-frame with 3 columns, supplied
+  with this package. Contains the length and initial information all
+  categorical variables contained in the microdata file.
 }
 }
 \details{
-%%  ~~ If necessary, more details than the description above ~~
+The \code{le.pesquisa} allows the reading of the microdata household
+surveys of IBGE, as the PNAD and PME. the microdata are files of text
+type, where the columns of data are arranged side by side without any
+separation. In fact, this function can be used to read any text file
+data that is organized in the same format, it is enough to provide a
+desired dictionary data file. The dictionaries of PNAD and PME are
+provided by IBGE in this package.
+To read more then 20 variables of the people PNAD, it is recommended
+that your computer has at least 1GB of memory
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+  As a result of the reading is given an data-frame  
+  only with the chosen variables and the number of rows from the
+  original microdata. The names of the data-frame columns
+  are contained in the \code{codigos} argument .
 }
 \references{
-%% ~put references to the literature/web site here ~
+  http://www.ibge.gov.br
 }
 \author{
-%%  ~~who you are~~
+  Alexandre Rademaker \email{arademaker@gmail.com}
+  Rafael F. Haeusler \email{rafael.f.haeusler@gmail.com}
 }
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+ \dontrun{
+     library(dicionariosIBGE)
+     data(dicPNAD2009)
+    
+     # Set this \code{path} to point to the microdata file:
+     dados <- le.pesquisa(dicionario=dicdom2009,
+                          pathname.in=path,
+                          codigos=dicdom2009[c(4:12),2])
 
-## The function is currently defined as
-function (dicionario, pathname.in, codigos, 
-                         tbloco = 2000, rotulos = NULL) 
-{
-  inicios <- numeric(0)
-  tamanhos <- numeric(0)
-  for (k in 1:length(codigos)) {
-    if (all(dicionario$cod != codigos[k])) 
-      stop(paste("Vari\xe1vel", codigos[k], "n\xe3o existe em", 
-                 pathname.in))
-    inicios[k] <- dicionario$inicio[dicionario$cod == codigos[k]]
-    tamanhos[k] <- dicionario$tamanho[dicionario$cod == codigos[k]]
-  }
-  arq <- file(pathname.in)
-  open(arq)
-  cont = 1
-  dados <- numeric(0)
-  dadostemp2 <- numeric(0)
-  nlidos = 0
-  while (cont) {
-    dadostemp <- scan(file = arq, what = "", sep = ";", nlines = tbloco, 
-                      quiet = TRUE)
-    coluna <- substr(dadostemp, inicios[1], inicios[1] + 
-                     tamanhos[1] - 1)
-    dadostemp2 <- data.frame(type.convert(coluna))
-    if (length(inicios) > 1) 
-      for (k in 2:length(inicios)) {
-        coluna <- substr(dadostemp, inicios[k], inicios[k] + 
-                         tamanhos[k] - 1)
-        dadostemp2 <- cbind(dadostemp2, data.frame(type.convert(coluna)))
-      }
-    if (length(dadostemp) < tbloco) 
-      cont = 0
-    rm(dadostemp)
-    dados <- rbind(dados, dadostemp2)
-    nlidos <- nrow(dados)
-  }
-  close(arq)
-  rm(dadostemp2)
-  
-  cat("\n", nrow(dados), "rows  x ", ncol(dados), "columms\n")
-  colnames(dados) <- codigos
-  if(length(rotulos)!=0){
-    rotvar <- rotulos[grep(paste(codigos,collapse="|"),rotulos[,1]),]
-    for(n in c(1:ncol(dados))){
-      
-      num <- grep(colnames(dados[n]),rotvar[,1])
-      if(length(num)!=0){
-        for(i in num){
-          
-          result <- grep(rotvar[i,2],dados[,n])
-          if(length(result)!=0){
-            dados[result,n] <- rotvar[i,3]
-          }
-        }
-      }
+     #with \code{rotulos} != NULL
+     # Set this \code{path} to point to the microdata file:
+     dados <- le.pesquisa(dicionario=dicdom2009,
+                          pathname.in=path,
+                          codigos=dicdom2009[c(4:12),2],rotulos=rotdom2009)
+                           
+                          
     }
-  } 
-
-  dados
-  
-  }
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{research_read}
+

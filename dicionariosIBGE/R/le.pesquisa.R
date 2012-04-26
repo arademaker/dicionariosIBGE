@@ -1,6 +1,6 @@
 le.pesquisa <-
-function (dicionario, pathname.in, codigos, 
-                         tbloco = 2000, rotulos = NULL) 
+  function (dicionario, pathname.in, codigos, 
+            tbloco = 2000, rotulos = NULL) 
 {
   inicios <- numeric(0)
   tamanhos <- numeric(0)
@@ -38,7 +38,7 @@ function (dicionario, pathname.in, codigos,
   close(arq)
   rm(dadostemp2)
   
-  cat("\n", nrow(dados), "rows  x ", ncol(dados), "columms\n")
+
   colnames(dados) <- codigos
   if(length(rotulos)!=0){
     rotvar <- rotulos[grep(paste(codigos,collapse="|"),rotulos[,1]),]
