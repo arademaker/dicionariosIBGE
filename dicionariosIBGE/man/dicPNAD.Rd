@@ -1,5 +1,6 @@
 \name{dicPNAD}
 \docType{data}
+
 \alias{dicPNAD}
 \alias{dicPNAD1983}
 \alias{dicPNAD1988}
@@ -16,6 +17,8 @@
 \alias{dicPNAD2005}
 \alias{dicPNAD2006}
 \alias{dicPNAD2007}
+\alias{dicPNAD2008}
+
 
 \alias{dicdom1983}
 \alias{dicpes1983}
@@ -44,15 +47,19 @@
 \alias{dicdom2005}
 \alias{dicpes2005}
 \alias{dicdom2006}
+\alias{dicdom2006supl}
+\alias{dicpes2006supl}
 \alias{dicpes2006}
 \alias{dicdom2007}
 \alias{dicpes2007}
+\alias{dicdom2008}
+\alias{dicpes2008}
 
 \encoding{UTF-8}
 \title{Data Dictionaries for PNAD}
 \description{
   One data dictionary for people records and one for house records,
-  for each PNAD of the years 1983, 1988 and from 1993 to 2007.
+  for each PNAD of the years 1983, 1988 and from 1993 to 2009.
 }
 \format{
   Each dictionary is a data frame with one line for each survey variable,

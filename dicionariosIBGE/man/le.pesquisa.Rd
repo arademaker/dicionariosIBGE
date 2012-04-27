@@ -49,7 +49,7 @@ data that is organized in the same format, it is enough to provide a
 desired dictionary data file. The dictionaries of PNAD and PME are
 provided by IBGE in this package.
 To read more then 20 variables of the people PNAD, it is recommended
-that your computer has at least 1GB of memory
+that your computer has at least 1GB of memory.
 }
 \value{
   As a result of the reading is given an data-frame  
@@ -58,13 +58,14 @@ that your computer has at least 1GB of memory
   are contained in the \code{codigos} argument .
 }
 \references{
-  http://www.ibge.gov.br
+  R Package \code{IBGEPesq}.
 }
 \author{
   Alexandre Rademaker \email{alexandre.rademaker@fgv.br}
+  
   Rafael F. Haeusler \email{rafael.f.haeusler@gmail.com}
 }
-}
+
 \examples{
  \dontrun{
      library(dicionariosIBGE)
