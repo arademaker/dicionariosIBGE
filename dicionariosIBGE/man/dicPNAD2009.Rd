@@ -11,9 +11,13 @@
 }
 \format{
   A data set with 4 different data frames:
+
   -dicdom2009
+
   -dicpes2009
+
   -rotdom2009
+
   -rotpes2009
 }
 \source{
