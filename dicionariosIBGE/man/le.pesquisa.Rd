@@ -1,13 +1,10 @@
 \name{le.pesquisa}
 \alias{le.pesquisa}
 
-\title{Function that reads microdata from the IBGE research}
+\title{Function that reads microdata from the IBGE survey}
 \description{
- Performs a block read, recovering only the wanted variables.  As an
- example, to tabulate data from PNAD on
- education, needs only the variables related to this topic (years of
- study, education network, ...), and other variables more general such
- as age and sex.
+ Performs a block read, recovering only the wanted variables from the
+ IBGE surveys.  
 }
 \usage{
 le.pesquisa(dicionario, pathname.in, codigos, tbloco = 2000, rotulos = NULL)
@@ -15,7 +12,7 @@ le.pesquisa(dicionario, pathname.in, codigos, tbloco = 2000, rotulos = NULL)
 
 \arguments{
   \item{dicionario}{
-  A data-frame with 4 or 6 columns, supplied with this package. Contains
+  A data frame with 4 or 6 columns, supplied with this package. Contains
   the identification and description of all variables contained in the
   microdata file as well as other necessary information for
   reading. Each file must have a specific microdata dictionary.
@@ -35,7 +32,7 @@ le.pesquisa(dicionario, pathname.in, codigos, tbloco = 2000, rotulos = NULL)
   \code{tbloco} may be larger than 2000, reducing the read time.
 }
   \item{rotulos}{
-  A optional variable formed by a data-frame with 3 columns, supplied
+  A optional variable formed by a data frame with 3 columns, supplied
   with this package. Contains the length and initial information all
   categorical variables contained in the microdata file.
 }
@@ -52,9 +49,9 @@ To read more then 20 variables of the people PNAD, it is recommended
 that your computer has at least 1GB of memory.
 }
 \value{
-  As a result of the reading is given an data-frame  
+  As a result of the reading is given an data frame  
   only with the chosen variables and the number of rows from the
-  original microdata. The names of the data-frame columns
+  original microdata. The names of the data frame columns
   are contained in the \code{codigos} argument .
 }
 \references{
@@ -85,5 +82,5 @@ that your computer has at least 1GB of memory.
                           
     }
 }
-\keyword{research_read}
+\keyword{le.pesquisa}
 

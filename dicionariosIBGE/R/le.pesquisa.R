@@ -37,10 +37,11 @@ le.pesquisa <-
   }
   close(arq)
   rm(dadostemp2)
-  
-
   colnames(dados) <- codigos
-  if(length(rotulos)!=0){
+  if(is.null(rotulos)){
+    dados
+  }
+  else{
     rotvar <- rotulos[grep(paste(codigos,collapse="|"),rotulos[,1]),]
     for(n in c(1:ncol(dados))){
       
@@ -55,9 +56,8 @@ le.pesquisa <-
         }
       }
     }
-  } 
-
-  dados
+    dados
+  }
   
 }
 
