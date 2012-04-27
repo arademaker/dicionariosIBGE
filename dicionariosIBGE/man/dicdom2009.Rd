@@ -24,6 +24,6 @@
   }
 }
 \source{
-  http://www.ibge.gov.br
+  \url{http://www.ibge.gov.br}
     }
 \keyword{datasets}

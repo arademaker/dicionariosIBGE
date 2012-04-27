@@ -54,7 +54,7 @@ that your computer has at least 1GB of memory.
   original microdata. The names of the data frame columns
   are contained in the \code{codigos} argument .
 }
-\references{}
+
 \author{
   Alexandre Rademaker \email{alexandre.rademaker@fgv.br}
   

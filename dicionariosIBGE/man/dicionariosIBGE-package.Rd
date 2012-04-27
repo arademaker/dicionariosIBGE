@@ -28,7 +28,7 @@ LazyLoad: \tab yes\cr
 
 }
 \author{
-  Erick Fonseca <erick.fonseca@fgv.br>,
+  Rafael Fernandes Haeusler <rafael.f.haeusler@gmail.com>,
   Alexandre Rademaker <alexandre.rademaker@fgv.br>
 }
 \references{
