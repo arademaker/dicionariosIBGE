@@ -5,8 +5,9 @@ le.pesquisa <-
   inicios <- numeric(0)
   tamanhos <- numeric(0)
   for (k in 1:length(codigos)) {
-    if (all(dicionario$cod != codigos[k])) 
-      stop(paste("Variável", codigos[k], "não existe em", 
+    if (all(dicionario$cod != codigos[k]))
+     
+      stop(paste("Vari\xe1vel", codigos[k], "n\xe3o existe em", 
                  pathname.in))
     inicios[k] <- dicionario$inicio[dicionario$cod == codigos[k]]
     tamanhos[k] <- dicionario$tamanho[dicionario$cod == codigos[k]]
