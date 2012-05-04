@@ -1,6 +1,5 @@
 \name{dicdom2009}
 \docType{data}
-
 \alias{dicdom2009}
 
 \encoding{UTF-8}
