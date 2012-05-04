@@ -1,8 +1,8 @@
 Package: dicionariosIBGE
 Type: Package
 Title: Dictionaries for reading microdata surveys from IBGE
-Version: 1.3
-Date: 2010-05-14
+Version: 1.5
+Date: 2012-05-04
 Author: Alexandre Rademaker <alexandre.rademaker@fgv.br>,
 	Rafael Haeusler <rafael.f.haeusler@gmail.com>
 Maintainer: Alexandre Rademaker <alexandre.rademaker@fgv.br>
@@ -10,4 +10,3 @@ Description: This package contains the dictionaries for reading microdata
         from IBGE (Brazilian Institute of Geography and Statistics)
         surveys PNAD, PME and POF.
 License: GPL-2
-

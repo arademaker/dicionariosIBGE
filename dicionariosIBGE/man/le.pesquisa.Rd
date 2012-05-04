@@ -54,10 +54,14 @@ that your computer has at least 1GB of memory.
   original microdata. The names of the data frame columns
   are contained in the \code{codigos} argument .
 }
+\references{
+  See the original le.pesquisa from IBGEPesq package available
+  at \url{http://www.ibge.gov.br}.
+}
 
 \author{
   Alexandre Rademaker \email{alexandre.rademaker@fgv.br}
-  
+
   Rafael F. Haeusler \email{rafael.f.haeusler@gmail.com}
 }
 

@@ -13,12 +13,14 @@
   and it has 3 columms, with important information of each categorical variable.
   
   \tabular{lll}{
-    cod \tab character \tab Variable code \cr
-    valor \tab numeric \tab Levels of the categorical variable \cr
-    rotulo \tab numeric \tab Labels of the categorical variable 
+    cod    \tab character \tab Variable code \cr
+    valor  \tab numeric   \tab Levels of the categorical variable \cr
+    rotulo \tab numeric   \tab Labels of the categorical variable 
   }
 }
 \source{
- \url{ http://www.ibge.gov.br}
-    }
+  \url{http://www.ibge.gov.br}
+}
+
 \keyword{datasets}
+    

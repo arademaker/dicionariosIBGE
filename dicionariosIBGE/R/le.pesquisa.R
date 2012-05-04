@@ -1,14 +1,11 @@
 le.pesquisa <-
-  function (dicionario, pathname.in, codigos, 
-            tbloco = 2000, rotulos = NULL) 
+  function (dicionario, pathname.in, codigos, tbloco = 2000, rotulos = NULL) 
 {
   inicios <- numeric(0)
   tamanhos <- numeric(0)
   for (k in 1:length(codigos)) {
-    if (all(dicionario$cod != codigos[k]))
-     
-      stop(paste("Vari\xe1vel", codigos[k], "n\xe3o existe em", 
-                 pathname.in))
+    if (all(dicionario$cod != codigos[k])) 
+      stop(paste("Variavel", codigos[k], "nao existe em", pathname.in))
     inicios[k] <- dicionario$inicio[dicionario$cod == codigos[k]]
     tamanhos[k] <- dicionario$tamanho[dicionario$cod == codigos[k]]
   }
@@ -39,25 +36,23 @@ le.pesquisa <-
   close(arq)
   rm(dadostemp2)
   colnames(dados) <- codigos
-  if(is.null(rotulos))
+
+  if( is.null(rotulos) )
     return(dados)
-  
-    rotvar <- rotulos[grep(paste(codigos,collapse="|"),rotulos[,1]),]
-    for(n in c(1:ncol(dados))){
-      
-      num <- grep(colnames(dados[n]),rotvar[,1])
-      if(length(num)!=0){
-        for(i in num){
-          
-          result <- grep(rotvar[i,2],dados[,n])
-          if(length(result)!=0){
-            dados[result,n] <- rotvar[i,3]
-          }
+
+  rotvar <- rotulos[rotulos$cod == codigos,]
+
+  for(n in c(1:ncol(dados))){
+    num <- grep(colnames(dados[n]),rotvar[,1])
+    if(length(num)!=0){
+      for(i in num){
+        result <- grep(rotvar[i,2],dados[,n])
+        if(length(result)!=0){
+          dados[result,n] <- rotvar[i,3]
         }
       }
     }
-    return(dados)
- 
-  
+  }
+  return(dados)
 }
 
