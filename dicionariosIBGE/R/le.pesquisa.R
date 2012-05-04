@@ -1,13 +1,11 @@
 le.pesquisa <-
-  function (dicionario, pathname.in, codigos, 
-            tbloco = 2000, rotulos = NULL) 
+  function (dicionario, pathname.in, codigos, tbloco = 2000, rotulos = NULL) 
 {
   inicios <- numeric(0)
   tamanhos <- numeric(0)
   for (k in 1:length(codigos)) {
     if (all(dicionario$cod != codigos[k])) 
-      stop(paste("Variavel", codigos[k], "nao existe em", 
-                 pathname.in))
+      stop(paste("Variavel", codigos[k], "nao existe em", pathname.in))
     inicios[k] <- dicionario$inicio[dicionario$cod == codigos[k]]
     tamanhos[k] <- dicionario$tamanho[dicionario$cod == codigos[k]]
   }
@@ -42,7 +40,7 @@ le.pesquisa <-
   if( is.null(rotulos) )
     return(dados)
 
-  rotvar <- rotulos[rotulos$cod == rotulos,]
+  rotvar <- rotulos[rotulos$cod == codigos,]
 
   for(n in c(1:ncol(dados))){
     num <- grep(colnames(dados[n]),rotvar[,1])
