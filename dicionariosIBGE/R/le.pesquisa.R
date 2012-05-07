@@ -10,7 +10,7 @@ le.pesquisa <-
   
   for (k in 1:length(codigos)) {
     if (all(dicionario$cod != codigos[k])) 
-      stop(cat("\n Variable", codigos[k], "do not exist in", pathname.in,"file or directory"))
+      stop(cat(paste("\n Variable", codigos[k], "do not exist in", pathname.in,"file or directory")))
     inicios[k] <- dicionario$inicio[dicionario$cod == codigos[k]]
     tamanhos[k] <- dicionario$tamanho[dicionario$cod == codigos[k]]
   }
