@@ -7,7 +7,7 @@
  IBGE surveys.  
 }
 \usage{
-le.pesquisa(dicionario, pathname.in, codigos, tbloco = 2000, rotulos = NULL)
+le.pesquisa(dicionario, pathname.in, codigos, rotulos = NULL, tbloco = 2000)
 }
 
 \arguments{

@@ -1,11 +1,16 @@
 le.pesquisa <-
-  function (dicionario, pathname.in, codigos, tbloco = 2000, rotulos = NULL) 
+  function (dicionario, pathname.in, codigos, rotulos = NULL,tbloco = 2000) 
 {
+  
   inicios <- numeric(0)
   tamanhos <- numeric(0)
+  if(is.data.frame(dicionario)==FALSE)stop(cat("\n Variable dicionario is not a data.frame \n see documentation"))
+  if(unique(colnames(dicionario)==c("inicio","cod","tamanho","desc"))==TRUE)stop(cat("\n Variable dicionario doesn't has the right columms names, see documentation"))
+  if(is.data.frame(rotulos)==FALSE)stop(cat("\n Variable rotulos is not a data.frame \n see documentation"))
+  if(unique(colnames(rotulos)==c("cod","valor","rotulo"))==TRUE)stop(cat("\n Variable rotulos doesn't has the right columms names, see documentation"))
   for (k in 1:length(codigos)) {
     if (all(dicionario$cod != codigos[k])) 
-      stop(paste("Variavel", codigos[k], "nao existe em", pathname.in))
+      stop(cat("\n Variable", codigos[k], "do not exist in", pathname.in,"file or directory"))
     inicios[k] <- dicionario$inicio[dicionario$cod == codigos[k]]
     tamanhos[k] <- dicionario$tamanho[dicionario$cod == codigos[k]]
   }
@@ -39,18 +44,9 @@ le.pesquisa <-
 
   if( is.null(rotulos) )
     return(dados)
-
-  rotvar <- rotulos[rotulos$cod == codigos,]
-
   for(n in c(1:ncol(dados))){
-    num <- grep(colnames(dados[n]),rotvar[,1])
-    if(length(num)!=0){
-      for(i in num){
-        result <- grep(rotvar[i,2],dados[,n])
-        if(length(result)!=0){
-          dados[result,n] <- rotvar[i,3]
-        }
-      }
+    if( TRUE %in% unique(rotulos$cod==colnames(dados[n])) ==TRUE){
+      dados[,n] <- factor(dados[,n],levels=subset(rotulos,cod==colnames(dados[n]))[,2], labels=subset(rotulos,cod==colnames(dados[n]))[,3])
     }
   }
   return(dados)

@@ -52,6 +52,7 @@
 \alias{dic13pof2008.2009}
 \alias{dic14pof2008.2009}
 \alias{dic15pof2008.2009}
+\alias{dic16pof2008.2009}
 
 \encoding{UTF-8}
 \title{Data Dictionaries for POF}
