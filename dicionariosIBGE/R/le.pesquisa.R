@@ -4,10 +4,10 @@ le.pesquisa <-
   
   inicios <- numeric(0)
   tamanhos <- numeric(0)
-  if(is.data.frame(dicionario)==FALSE)stop(cat("\n Variable dicionario is not a data.frame \n see documentation"))
-  if(unique(colnames(dicionario)==c("inicio","cod","tamanho","desc"))==TRUE)stop(cat("\n Variable dicionario doesn't has the right columms names, see documentation"))
-  if(is.data.frame(rotulos)==FALSE)stop(cat("\n Variable rotulos is not a data.frame \n see documentation"))
-  if(unique(colnames(rotulos)==c("cod","valor","rotulo"))==TRUE)stop(cat("\n Variable rotulos doesn't has the right columms names, see documentation"))
+  if(is.data.frame(dicionario)==FALSE)stop(cat("\n Variable dicionario is not a data.frame see documentation"))
+  
+  if(is.data.frame(rotulos)==FALSE)stop(cat("\n Variable rotulos is not a data.frame see documentation"))
+  
   for (k in 1:length(codigos)) {
     if (all(dicionario$cod != codigos[k])) 
       stop(cat("\n Variable", codigos[k], "do not exist in", pathname.in,"file or directory"))
