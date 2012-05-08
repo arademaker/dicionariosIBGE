@@ -6,7 +6,9 @@
 \encoding{UTF-8}
 \title{Data Dictionarie label for PNAD 2009 survey}
 \description{
-  One data dictionary label for house record from PNAD 2009 survey.
+  One data dictionary label for reading "DOM2009.TXT" file (domiciles
+  record from PNAD 2009 survey).  In the column \code{rotulo} we choose
+  to remove all accents to avoid encoding problems.
 }
 \format{
   This dictionary is a data frame with one line for each survey categorical variable,

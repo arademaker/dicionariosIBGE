@@ -7,7 +7,8 @@
 \title{Data Dictionarie for PNAD 2009 survey}
 \description{
   Data dictionary for reading "PES2009.TXT" file (people record from
-  PNAD 2009 survey).
+  PNAD 2009 survey). In the column \code{desc} we choose to remove all accents
+  to avoid encoding problems.
 
   In the original IBGE documentation, the variables below have the
   following comments:

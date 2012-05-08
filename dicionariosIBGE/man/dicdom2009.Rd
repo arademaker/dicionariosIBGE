@@ -12,12 +12,29 @@
   PNAD 2009 survey). In the column DESC we choose to remove all accents
   to avoid encoding problems.
 
-  In the original IBGE documentation, the variables below have the
+  The variable \code{V0216} in the original PNAD documentation has two
+  meanings (categorical and quantitative), because of that we created
+  two variables \code{V0216a} (categorical) and \code{V0216b}
+  (quantitative) to avoid complications with the dicitionary analysis 
+  
+
+  In the original PNAD documentation, the variables below have the
   following comments:
   
   Variable V0102 has comment " As 2 primeiras posições são o código da
   Unidade da Federação"
-  
+
+  Variable V4614 has comment "exclusive o rendimento das pessoas cuja
+  condição na unidade domiciliar era pensionista, empregado doméstico ou
+  parente do empregado doméstico e das pessoas de menos de 10 anos de
+  idade"
+
+  Variable V4617 has comment "Identificação de estrato de município auto-representativo e não auto-representativo"
+
+  Variable V4618 has comment "Unidade primária de amostragem"
+
+  Variable V4620 has comment "exclusive as pessoas cuja condição na unidade domiciliar era pensionista, empregado doméstico ou parente do empregado doméstico"
+
   Variable V4605 has value with 10 decimals
   
   Variable V4607 has value with 10 decimals
