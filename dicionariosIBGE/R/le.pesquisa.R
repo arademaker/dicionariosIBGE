@@ -4,9 +4,9 @@ le.pesquisa <-
   
   inicios <- numeric(0)
   tamanhos <- numeric(0)
-  if(is.data.frame(dicionario)==FALSE)stop(cat("\n Variable dicionario is not a data.frame see documentation"))
+  if(is.data.frame(dicionario)==FALSE)stop(cat("\n Variable dicionario is not a data.frame see documentation \n"))
   
-  if(is.data.frame(rotulos)==FALSE)stop(cat("\n Variable rotulos is not a data.frame see documentation"))
+  
   
   for (k in 1:length(codigos)) {
     if (all(dicionario$cod != codigos[k])) 
