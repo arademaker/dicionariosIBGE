@@ -4,7 +4,7 @@
 \alias{rotdom2009}
 
 \encoding{UTF-8}
-\title{Data Dictionarie label for PNAD 2009 survey}
+\title{Data Dictionary label for PNAD 2009 survey}
 \description{
   One data dictionary label for reading "DOM2009.TXT" file (domiciles
   record from PNAD 2009 survey).  In the column \code{rotulo} we choose

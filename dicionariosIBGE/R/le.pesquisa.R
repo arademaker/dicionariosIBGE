@@ -4,7 +4,7 @@ le.pesquisa <-
   
   inicios <- numeric(0)
   tamanhos <- numeric(0)
-  if(is.data.frame(dicionario)==FALSE)stop(cat("\n Variable dicionario is not a data.frame see documentation \n"))
+  if(is.data.frame(dicionario)==FALSE)stop(cat(paste("\n Variable", dicionario," is not a data.frame see documentation \n")))
   
   
   
@@ -19,24 +19,24 @@ le.pesquisa <-
   cont = 1
   dados <- numeric(0)
   dadostemp2 <- numeric(0)
-  nlidos = 0
+
   while (cont) {
     dadostemp <- scan(file = arq, what = "", sep = ";", nlines = tbloco, 
                       quiet = TRUE)
     coluna <- substr(dadostemp, inicios[1], inicios[1] + 
                      tamanhos[1] - 1)
-    dadostemp2 <- data.frame(type.convert(coluna))
+    dadostemp2 <- data.frame(coluna)
     if (length(inicios) > 1) 
       for (k in 2:length(inicios)) {
         coluna <- substr(dadostemp, inicios[k], inicios[k] + 
                          tamanhos[k] - 1)
-        dadostemp2 <- cbind(dadostemp2, data.frame(type.convert(coluna)))
+        dadostemp2 <- cbind(dadostemp2, data.frame(coluna))
       }
     if (length(dadostemp) < tbloco) 
       cont = 0
     rm(dadostemp)
     dados <- rbind(dados, dadostemp2)
-    nlidos <- nrow(dados)
+
   }
   close(arq)
   rm(dadostemp2)
@@ -45,6 +45,7 @@ le.pesquisa <-
   if( is.null(rotulos) )
     return(dados)
   for(n in c(1:ncol(dados))){
+    dados[,n] <- type.convert(as.character(dados[,n]))
     if( TRUE %in% unique(rotulos$cod==colnames(dados[n])) ==TRUE){
       dados[,n] <- factor(dados[,n],levels=subset(rotulos,cod==colnames(dados[n]))[,2], labels=subset(rotulos,cod==colnames(dados[n]))[,3])
     }

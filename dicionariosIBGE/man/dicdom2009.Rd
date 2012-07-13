@@ -4,12 +4,12 @@
 \alias{dicdom2009}
 
 \encoding{UTF-8}
-\title{Data Dictionarie for PNAD 2009 survey}
+\title{Data Dictionary for PNAD 2009 survey}
 
 \description{
 
   Data dictionary for reading "DOM2009.TXT" file (domiciles record from
-  PNAD 2009 survey). In the column DESC we choose to remove all accents
+  PNAD 2009 survey). In the column \code{desc} we choose to remove all accents
   to avoid encoding problems.
 
   The variable \code{V0216} in the original PNAD documentation has two
@@ -51,7 +51,7 @@
 
 \format{
   This dictionary is a data frame with one line for each survey variable,
-  and it has 6 columms, with important information of each variable.
+  and it has 4 columms, with important information of each variable.
   
   \tabular{lll}{
     inicio \tab numeric \tab Position of the value's first character in

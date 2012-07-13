@@ -15,7 +15,6 @@
 \alias{dicPNAD2003}
 \alias{dicPNAD2004}
 \alias{dicPNAD2005}
-\alias{dicPNAD2006}
 \alias{dicPNAD2007}
 \alias{dicPNAD2008}
 
@@ -46,10 +45,6 @@
 \alias{dicpes2004}
 \alias{dicdom2005}
 \alias{dicpes2005}
-\alias{dicdom2006}
-\alias{dicdom2006supl}
-\alias{dicpes2006supl}
-\alias{dicpes2006}
 \alias{dicdom2007}
 \alias{dicpes2007}
 \alias{dicdom2008}
