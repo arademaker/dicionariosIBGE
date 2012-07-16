@@ -11,6 +11,15 @@
   Data dictionary for reading "T_DOMICILIO_S.txt" file (domiciles (type
   1) record from POF 2008-2009 survey).
 
+  The categorical variables \code{COD_CONTRATO_DOCUM} (type of rent) and
+  \code{COD_TEMPO_MORADIA} (rent time) have the occurrence of ZERO,
+  reading the data file, but that value doesn't have any categorical
+  meaning in any documentation from POF 2008-2009 survey (available for
+  download in the IBGE website). Because of that appears NAs when you
+  read the data using the \code{rotulos} field of the \code{le.pesquisa}
+  function.
+  
+
 }
 
 \format{
