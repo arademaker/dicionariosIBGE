@@ -6,7 +6,7 @@
 \encoding{UTF-8}
 \title{Data set for PNAD 2009 survey}
 \description{
-  One data set with two dictionaries one for people records and one for house records, and
+  One data set with two dictionaries one for people records and one for domiciles records, and
   two dictionaries labels one for people records and one for house records.
 }
 \format{

@@ -15,8 +15,8 @@
 \alias{dicPNAD2003}
 \alias{dicPNAD2004}
 \alias{dicPNAD2005}
-\alias{dicPNAD2007}
-\alias{dicPNAD2008}
+
+
 
 
 \alias{dicdom1983}
@@ -45,10 +45,6 @@
 \alias{dicpes2004}
 \alias{dicdom2005}
 \alias{dicpes2005}
-\alias{dicdom2007}
-\alias{dicpes2007}
-\alias{dicdom2008}
-\alias{dicpes2008}
 
 \encoding{UTF-8}
 \title{Data Dictionaries for PNAD}

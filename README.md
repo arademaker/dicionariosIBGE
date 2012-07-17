@@ -11,7 +11,7 @@ http://cran.r-project.org/web/packages/dicionariosIBGE/index.html
 ## Equipe
 
  * Alexandre Rademaker  (EMAp/FGV)
- * Alexandre Miranda Coelho (EBAPE/FGV)
+ * Rafael Fernandes Haeusler
 
 
 ## Usando o pacote
