@@ -56,6 +56,8 @@ le.pesquisa <-
   colnames(dados) <- codigos
 
   if( is.null(rotulos) )
+    close(pb)
+    cat("\n")
     return(dados)
   pb <- txtProgressBar(min = 0, max = (lines/tbloco*length(inicios) + ncol(dados)), style = 3) 
   for(n in c(1:ncol(dados))){
@@ -68,7 +70,8 @@ le.pesquisa <-
     setTxtProgressBar(pb, process)
    
   }
+  
   close(pb)
-  cat("\r")
+  cat("\n")
   return(dados)
 }
