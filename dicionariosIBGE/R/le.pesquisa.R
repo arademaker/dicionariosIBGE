@@ -20,20 +20,25 @@ le.pesquisa <-
   dadostemp2 <- numeric(0)
   
   lines <- as.numeric(strsplit(system(paste("wc -l",pathname.in,sep=" "),intern=TRUE),split=" ")[[1]][1]) 
-  pb <- txtProgressBar(min = 0, max = lines/tbloco*length(inicios), style = 3) 
 
+  max <- (lines/tbloco*length(inicios) + length(codigos))
+  if(is.null(rotulos)){
+  max <- (lines/tbloco*length(inicios))
+  }
+  pb <- txtProgressBar(min = 0, max = max, style = 3)
+  
   i=0
   while (cont) {
     dadostemp <- scan(file = arq, what = "", sep = ";", nlines = tbloco, 
                       quiet = TRUE)
     coluna <- substr(dadostemp, inicios[1], inicios[1] + 
                      tamanhos[1] - 1)
-    dadostemp2 <- data.frame(coluna)
+    dadostemp2 <- data.frame(type.convert(coluna))
     if (length(inicios) > 1)
       for (k in 2:length(inicios)) {
         coluna <- substr(dadostemp, inicios[k], inicios[k] + 
                          tamanhos[k] - 1)
-        dadostemp2 <- cbind(dadostemp2, data.frame(coluna))
+        dadostemp2 <- cbind(dadostemp2, data.frame(type.convert(coluna)))
         Sys.sleep(0.1)
         process <- i*length(inicios) + k
         setTxtProgressBar(pb, process)
@@ -50,13 +55,15 @@ le.pesquisa <-
   rm(dadostemp2)
   colnames(dados) <- codigos
 
-  if( is.null(rotulos) )
+  if( is.null(rotulos) ){
     close(pb)
     cat("\n")
     return(dados)
-  pb <- txtProgressBar(min = 0, max = (lines/tbloco*length(inicios) + ncol(dados)), style = 3) 
+  }
+
+   
   for(n in c(1:ncol(dados))){
-    dados[,n] <- type.convert(as.character(dados[,n]))
+
     if(colnames(dados)[n] %in% unique(rotulos$cod)){
       dados[,n] <- factor(dados[,n],levels = subset(rotulos, cod == colnames(dados)[n])[,"valor"],
                           labels = subset(rotulos,cod==colnames(dados)[n])[,"rotulo"])
