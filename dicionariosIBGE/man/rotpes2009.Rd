@@ -4,7 +4,7 @@
 \alias{rotpes2009}
 
 \encoding{UTF-8}
-\title{Data Dictionary label for PNAD 2009 survey}
+\title{Data Dictionary label for people record PNAD 2009 survey}
 \description{
   One data dictionary label for reading "PES2009.TXT" file (people
   record from PNAD 2009 survey).  In the column \code{rotulo} we choose
@@ -21,8 +21,7 @@
   }
 }
 
-\source{
-  \url{http://www.ibge.gov.br}
-}
+\source{The dictionaries were made based on the documentation of the
+    PNAD survey available at \url{http://www.ibge.gov.br}.}
 
 \keyword{datasets}

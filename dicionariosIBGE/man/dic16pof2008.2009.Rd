@@ -16,8 +16,8 @@
   provided by IBGE) as having the level \code{99} associated to the
   label \code{nao aplicavel}, but in the file 'Classificacoes POF
   2008-2009.doc' appears the same label associated to other level,
-  \code{16}. We choose the level \code{99}, because it's the one appears
-  when reading the data file.
+  \code{16}. We choose the level \code{99}, because it's the one that
+  appears when reading the data file.
 
 }
 
@@ -34,7 +34,6 @@
   
   }
 }
-\source{
-  http://www.ibge.gov.br
-    }
+\source{The dictionaries were made based on the documentation of the
+    PNAD survey available at \url{http://www.ibge.gov.br}.}
 \keyword{datasets}

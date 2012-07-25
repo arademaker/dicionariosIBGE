@@ -4,12 +4,13 @@
 \alias{dicpes2007}
 
 \encoding{UTF-8}
-\title{Data Dictionary for PNAD 2007 survey}
+\title{Data Dictionary for people record PNAD 2007 survey}
 
 \description{
 
   Data dictionary for reading "PES2007.TXT" file (people record from
-  PNAD 2007 survey).
+  PNAD 2007 survey). In the column \code{desc} we choose to remove all accents
+  to avoid encoding problems.
 }
 
 \format{
@@ -25,7 +26,6 @@
   
   }
 }
-\source{
-        http://www.ibge.gov.br
-    }
+\source{The dictionaries were made based on the documentation of the
+    PNAD survey available at \url{http://www.ibge.gov.br}.}
 \keyword{datasets}

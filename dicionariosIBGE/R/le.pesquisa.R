@@ -4,12 +4,25 @@ le.pesquisa <-
   
   inicios <- numeric(0)
   tamanhos <- numeric(0)
+
   if(!is.data.frame(dicionario)) 
     stop(cat(paste("\n","Variable", dicionario,"is not a data.frame see documentation","\n")))
+  if(ncol(dicionario)!= 4)
+    stop(cat(paste("\n Number of columms in the dictionary entry is not right, must have 4 but have only",ncol(dicionario),".\n")))
+  
+  num <- c()
+  col <- c("inicio","cod", "tamanho", "desc")
+  for(n in c(1:4)){
+    if(colnames(dicionario)[n]!= col[n])
+      num <- c(num,n)
+  }
+  if(length(num) != 0)
+    stop(cat(paste("\n The columm '",colnames(dicionario)[num],"' is wrong or not in the specific place. \n",sep="")))
+  
   
   for (k in 1:length(codigos)) {
-    if (all(dicionario$cod != codigos[k])) 
-      stop(cat(paste("\n Variable", codigos[k], "do not exist in", pathname.in,"file or directory")))
+    if (!codigos[k] %in% dicionario$cod) 
+      stop(cat(paste("\n Variable '", codigos[k], "' do not exist in the 2th columm of the dictionary, that contains possible variables. \n",sep="")))
     inicios[k] <- dicionario$inicio[dicionario$cod == codigos[k]]
     tamanhos[k] <- dicionario$tamanho[dicionario$cod == codigos[k]]
   }
@@ -25,6 +38,7 @@ le.pesquisa <-
   if(is.null(rotulos)){
   max <- (lines/tbloco*length(inicios))
   }
+ 
   pb <- txtProgressBar(min = 0, max = max, style = 3)
   
   i=0
@@ -77,3 +91,7 @@ le.pesquisa <-
   cat("\n")
   return(dados)
 }
+
+
+
+  

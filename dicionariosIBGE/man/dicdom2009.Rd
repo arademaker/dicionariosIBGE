@@ -4,7 +4,7 @@
 \alias{dicdom2009}
 
 \encoding{UTF-8}
-\title{Data Dictionary for PNAD 2009 survey}
+\title{Data Dictionary for domiciles record PNAD 2009 survey}
 
 \description{
 
@@ -12,10 +12,10 @@
   PNAD 2009 survey). In the column \code{desc} we choose to remove all accents
   to avoid encoding problems.
 
-  The variable \code{V0216} in the original PNAD documentation has two
-  meanings (categorical and quantitative), because of that we created
-  two variables \code{V0216a} (categorical) and \code{V0216b}
-  (quantitative) to avoid complications with the dicitionary analysis 
+  The variable V0216 in the original PNAD documentation has two meanings
+  (categorical and quantitative), because of that we created two
+  variables V0216a (categorical) and V0216b (quantitative) to avoid
+  complications with the dicitionary analysis
   
 
   In the original PNAD documentation, the variables below have the
@@ -62,7 +62,7 @@
   
   }
 }
-\source{
-  http://www.ibge.gov.br
-    }
+\source{The dictionaries were made based on the documentation of the
+    PNAD survey available at \url{http://www.ibge.gov.br}.}
+    
 \keyword{datasets}

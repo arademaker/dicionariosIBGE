@@ -21,9 +21,7 @@
   ITEM) in any of the type records that it appears, execpt in the food
   consumption (type 16) record that \code{COD_ITEM} (CÓDIGO DO TIPO DE
   ALIMENTO) is represented by another classification. That variable is
-  showed in the data frame \code{produtos}.  See the Extra Tables
-  documentation for more information about the variable
-  (help(produtos)).
+  showed in the data frame \link{produtos}.  
 
 }
 \format{
@@ -31,41 +29,39 @@
   variables and more 7 data frames with extra tables.
 
   Dictionaries:
-  \tabular{ll}{
+  \enumerate{
   
-    - dic1pof2008.2009 \tab   - dic2pof2008.2009 \cr
-    - dic3pof2008.2009 \tab   - dic4pof2008.2009 \cr
-    - dic5pof2008.2009 \tab   - dic6pof2008.2009 \cr
-    - dic7pof2008.2009 \tab   - dic8pof2008.2009 \cr
-    - dic9pof2008.2009 \tab   - dic10pof2008.2009 \cr
-    - dic11pof2008.2009 \tab  - dic12pof2008.2009 \cr
-    - dic13pof2008.2009 \tab  - dic14pof2008.2009 \cr
-    - dic15pof2008.2009 \tab  - dic16pof2008.2009 \cr
+    \item  dic1pof2008.2009    \item  dic2pof2008.2009 
+    \item  dic3pof2008.2009    \item  dic4pof2008.2009 
+    \item  dic5pof2008.2009    \item  dic6pof2008.2009 
+    \item  dic7pof2008.2009    \item  dic8pof2008.2009 
+    \item  dic9pof2008.2009    \item  dic10pof2008.2009 
+    \item  dic11pof2008.2009   \item  dic12pof2008.2009 
+    \item  dic13pof2008.2009   \item  dic14pof2008.2009 
+    \item  dic15pof2008.2009   \item  dic16pof2008.2009 
 
   }
   Labels:
-  \tabular{ll}{
+  \enumerate{
     
-    - rot1pof2008.2009 \tab   - rot2pof2008.2009 \cr
-    - rot3pof2008.2009 \tab   - rot4pof2008.2009 \cr
-    - rot5pof2008.2009 \tab   - rot6pof2008.2009 \cr
-    - rot7pof2008.2009 \tab   - rot8pof2008.2009 \cr
-    - rot9pof2008.2009 \tab   - rot10pof2008.2009 \cr
-    - rot11pof2008.2009 \tab  - rot12pof2008.2009 \cr
-    - rot13pof2008.2009 \tab  - rot14pof2008.2009 \cr
-    - rot15pof2008.2009 \tab  - rot16pof2008.2009 \cr
+    \item  rot1pof2008.2009    \item  rot2pof2008.2009 
+    \item  rot3pof2008.2009    \item  rot4pof2008.2009 
+    \item  rot5pof2008.2009    \item  rot6pof2008.2009 
+    \item  rot7pof2008.2009    \item  rot8pof2008.2009 
+    \item  rot9pof2008.2009    \item  rot10pof2008.2009 
+    \item  rot11pof2008.2009   \item  rot12pof2008.2009 
+    \item  rot13pof2008.2009   \item  rot14pof2008.2009 
+    \item  rot15pof2008.2009   \item  rot16pof2008.2009 
   }
   Extra tables:
-  \tabular{ll}{
-    - unidade_medida \tab - unidade_medida_alimentar \cr
-    - local_aquisicao \tab - religioes \cr
-    - produtos \tab - produtos_consumo_alimentar \cr
-    - peso_volume \tab  \cr
+  \enumerate{
+    \item  unidade_medida  \item  unidade_medida_alimentar 
+    \item  local_aquisicao  \item  religioes 
+    \item  produtos  \item  produtos_consumo_alimentar 
+    \item  peso_volume   
   }
    
 }
-\source{
-  http://www.ibge.gov.br
-  
-    }
+\source{The dictionaries were made based on the documentation of the
+    PNAD survey available at \url{http://www.ibge.gov.br}.}
 \keyword{datasets}

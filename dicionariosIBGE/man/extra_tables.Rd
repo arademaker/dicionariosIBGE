@@ -16,23 +16,24 @@
   That extra tables were implemented in the package to give you more
   autonomy with the package so as you could see some tables that are
   provided with the survey, in a data frame way. That tables are:
+  \enumerate{
+    
+  \item  unidade_medida (Cadastro da Unidade de Medida POF 2008-2009)
 
-  - unidade_medida (Cadastro da Unidade de Medida POF 2008-2009)
-
-  - unidade_medida_alimentar (Cadastro da Unidade de Medida do Consumo
+  \item  unidade_medida_alimentar (Cadastro da Unidade de Medida do Consumo
    Alimentar POF 2008-2009)
 
-  - religioes (Cadastro de Religioes POF 2008-2009)
+  \item  religioes (Cadastro de Religioes POF 2008-2009)
 
-  - local_aquisicao (Cadastro de Local de Aquisicao da POF 2008-2009)
+  \item  local_aquisicao (Cadastro de Local de Aquisicao da POF 2008-2009)
 
-  - produtos (Cadastro de Produtos POF 2008-2009)
+  \item  produtos (Cadastro de Produtos POF 2008-2009)
 
-  - produtos_consumo_alimentar (Cadastro de Produtos do Consumo Alimentar
+  \item  produtos_consumo_alimentar (Cadastro de Produtos do Consumo Alimentar
    POF 2008-2009)
 
-  - peso_volume (Cadastro de Peso ou Volume POF 2008-2009)
-
+  \item  peso_volume (Cadastro de Peso ou Volume POF 2008-2009)
+  }
   
 }
 \format{
@@ -109,8 +110,6 @@
 
  }
  
-\source{
-  http://www.ibge.gov.br
-  
-    }
+\source{The dictionaries were made based on the documentation of the
+    PNAD survey available at \url{http://www.ibge.gov.br}.}
 \keyword{datasets}

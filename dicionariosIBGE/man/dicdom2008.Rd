@@ -4,12 +4,13 @@
 \alias{dicdom2008}
 
 \encoding{UTF-8}
-\title{Data Dictionary for PNAD 2008 survey}
+\title{Data Dictionary for domiciles record PNAD 2008 survey}
 
 \description{
 
   Data dictionary for reading "DOM2008.TXT" file (domiciles record from
-  PNAD 2008 survey).
+  PNAD 2008 survey). In the column \code{desc} we choose to remove all accents
+  to avoid encoding problems.
 }
 
 \format{
@@ -25,7 +26,6 @@
   
   }
 }
-\source{
-        http://www.ibge.gov.br
-    }
+\source{The dictionaries were made based on the documentation of the
+    PNAD survey available at \url{http://www.ibge.gov.br}.}
 \keyword{datasets}

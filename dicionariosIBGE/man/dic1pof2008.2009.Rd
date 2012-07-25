@@ -15,9 +15,9 @@
   \code{COD_TEMPO_MORADIA} (rent time) have the occurrence of ZERO,
   reading the data file, but that value doesn't have any categorical
   meaning in any documentation from POF 2008-2009 survey (available for
-  download in the IBGE website). Because of that appears NAs when you
-  read the data using the \code{rotulos} field of the \code{le.pesquisa}
-  function.
+  download in the IBGE website). Because of that appears NAs in the
+  categorical variable when you read the data using the \code{rotulos}
+  parameter of the \link{le.pesquisa} function.
   
 
 }
@@ -35,7 +35,6 @@
   
   }
 }
-\source{
-  http://www.ibge.gov.br
-    }
+\source{The dictionaries were made based on the documentation of the
+    PNAD survey available at \url{http://www.ibge.gov.br}.}
 \keyword{datasets}
