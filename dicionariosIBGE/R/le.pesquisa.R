@@ -4,7 +4,7 @@ le.pesquisa <-
   
   inicios <- numeric(0)
   tamanhos <- numeric(0)
-
+  
   if(!is.data.frame(dicionario)) 
     stop(cat(paste("\n","Variable", dicionario,"is not a data.frame see documentation","\n")))
   if(ncol(dicionario)!= 4)
@@ -17,12 +17,30 @@ le.pesquisa <-
       num <- c(num,n)
   }
   if(length(num) != 0)
-    stop(cat(paste("\n The columm '",colnames(dicionario)[num],"' is wrong or not in the specific place. \n",sep="")))
-  
+    stop(cat(paste("\n The columm '",colnames(dicionario)[num],"' of '",deparse(substitute(dicionario)),"' is wrong or not in the specific place. \n",sep="")))
+
+
+  lines <- as.numeric(strsplit(system(paste("wc -l",pathname.in,sep=" "),intern=TRUE),split=" ")[[1]][1]) 
+  max <- (lines/tbloco*length(inicios))  
+  if(!is.null(rotulos)){
+    max <- (lines/tbloco*length(inicios) + length(codigos))
+    num <- c()
+    col <- c("cod", "valor", "rotulo")
+    for(i in c(1:3)){
+      if(colnames(rotulos)[i]!= col[i])
+        num <- c(num,i)
+    }
+    if(length(num) != 0)
+      stop(cat(paste("\n The columm '",colnames(rotulos)[num],"' of '",deparse(substitute(rotulos)), "' is wrong or not in the specific place. \n",sep="")))
+
+  }
+
+  pb <- txtProgressBar(min = 0, max = max, style = 3)
+
   
   for (k in 1:length(codigos)) {
     if (!codigos[k] %in% dicionario$cod) 
-      stop(cat(paste("\n Variable '", codigos[k], "' do not exist in the 2th columm of the dictionary, that contains possible variables. \n",sep="")))
+      stop(cat(paste("\n Variable '", codigos[k], "' do not exist in the 2th columm of '",deparse(substitute(dicionario)),"', that contains possible variables. \n",sep="")))
     inicios[k] <- dicionario$inicio[dicionario$cod == codigos[k]]
     tamanhos[k] <- dicionario$tamanho[dicionario$cod == codigos[k]]
   }
@@ -32,24 +50,8 @@ le.pesquisa <-
   dados <- numeric(0)
   dadostemp2 <- numeric(0)
   
-  lines <- as.numeric(strsplit(system(paste("wc -l",pathname.in,sep=" "),intern=TRUE),split=" ")[[1]][1]) 
-
-  max <- (lines/tbloco*length(inicios))  
-  if(!is.null(rotulos)){
-    max <- (lines/tbloco*length(inicios) + length(codigos))
-    num <- c()
-    col <- c("cod", "valor", "rotulo")
-    for(n in c(1:4)){
-      if(colnames(rotulos)[n]!= col[n])
-        num <- c(num,n)
-    }
-    if(length(num) != 0)
-      stop(cat(paste("\n The columm '",colnames(rotulos)[num],"' is wrong or not in the specific place. \n",sep="")))
-
-  }
   
-  pb <- txtProgressBar(min = 0, max = max, style = 3)
-  
+
   i=0
   while (cont) {
     dadostemp <- scan(file = arq, what = "", sep = ";", nlines = tbloco, 
@@ -101,6 +103,3 @@ le.pesquisa <-
   return(dados)
 }
 
-
-
-  
