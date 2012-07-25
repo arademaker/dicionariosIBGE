@@ -34,11 +34,20 @@ le.pesquisa <-
   
   lines <- as.numeric(strsplit(system(paste("wc -l",pathname.in,sep=" "),intern=TRUE),split=" ")[[1]][1]) 
 
-  max <- (lines/tbloco*length(inicios) + length(codigos))
-  if(is.null(rotulos)){
-  max <- (lines/tbloco*length(inicios))
+  max <- (lines/tbloco*length(inicios))  
+  if(!is.null(rotulos)){
+    max <- (lines/tbloco*length(inicios) + length(codigos))
+    num <- c()
+    col <- c("cod", "valor", "rotulo")
+    for(n in c(1:4)){
+      if(colnames(rotulos)[n]!= col[n])
+        num <- c(num,n)
+    }
+    if(length(num) != 0)
+      stop(cat(paste("\n The columm '",colnames(rotulos)[num],"' is wrong or not in the specific place. \n",sep="")))
+
   }
- 
+  
   pb <- txtProgressBar(min = 0, max = max, style = 3)
   
   i=0
