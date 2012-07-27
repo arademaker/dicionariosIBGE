@@ -72,6 +72,10 @@ le.pesquisa <-
         setTxtProgressBar(pb, process)
       }
     i <- i + 1
+    if(length(inicios)==1){
+      process <- i*length(inicios) + 1 
+      setTxtProgressBar(pb, process)
+    }
     if (length(dadostemp) < tbloco) 
       cont = 0
     rm(dadostemp)
