@@ -19,11 +19,8 @@ le.pesquisa <-
   if(length(num) != 0)
     stop(cat(paste("\n The columm '",colnames(dicionario)[num],"' of '",deparse(substitute(dicionario)),"' is wrong or not in the specific place. \n",sep="")))
 
-
-  lines <- as.numeric(strsplit(system(paste("wc -l",pathname.in,sep=" "),intern=TRUE),split=" ")[[1]][1]) 
-  max <- (lines/tbloco*length(inicios))  
   if(!is.null(rotulos)){
-    max <- (lines/tbloco*length(inicios) + length(codigos))
+    
     num <- c()
     col <- c("cod", "valor", "rotulo")
     for(i in c(1:3)){
@@ -34,9 +31,7 @@ le.pesquisa <-
       stop(cat(paste("\n The columm '",colnames(rotulos)[num],"' of '",deparse(substitute(rotulos)), "' is wrong or not in the specific place. \n",sep="")))
 
   }
-
-  pb <- txtProgressBar(min = 0, max = max, style = 3)
-
+  
   
   for (k in 1:length(codigos)) {
     if (!codigos[k] %in% dicionario$cod) 
@@ -44,6 +39,14 @@ le.pesquisa <-
     inicios[k] <- dicionario$inicio[dicionario$cod == codigos[k]]
     tamanhos[k] <- dicionario$tamanho[dicionario$cod == codigos[k]]
   }
+
+  lines <- as.numeric(strsplit(system(paste("wc -l",pathname.in,sep=" "),intern=TRUE),split=" ")[[1]][1]) 
+  max <- (lines/tbloco*length(inicios))  
+  if(!is.null(rotulos)){
+    max <- (lines/tbloco*length(inicios) + length(codigos))
+  }
+  pb <- txtProgressBar(min = 0, max = max, style = 3)
+  
   arq <- file(pathname.in)
   open(arq)
   cont = 1
@@ -86,7 +89,7 @@ le.pesquisa <-
     return(dados)
   }
 
-   
+  
   for(n in c(1:ncol(dados))){
 
     if(colnames(dados)[n] %in% unique(rotulos$cod)){
