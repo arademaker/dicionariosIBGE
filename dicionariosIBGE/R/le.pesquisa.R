@@ -1,7 +1,10 @@
-le.pesquisa <- function(dicionario, pathname.in, codigos, rotulos = NULL, tbloco = 2000, nlines) {
+le.pesquisa <- function(dicionario, pathname.in, codigos, rotulos = NULL, tbloco = 2000, nlines = NA) {
 
   inicios <- numeric(0)
   tamanhos <- numeric(0)
+
+  if(is.na(nlines))
+    stop(paste("You must provide the number of lines of the data file", substitute(dicionario), sep=" "))
   
   if( !all(c("inicio","cod", "tamanho", "desc") == colnames(dicionario)) )
     stop(paste("The", substitute(dicionario)," is not a valid object for 'dicionario' parameter",sep=" "))
@@ -17,44 +20,40 @@ le.pesquisa <- function(dicionario, pathname.in, codigos, rotulos = NULL, tbloco
   if ( length(inicios) == 0)
       stop(paste("Variables do not exist in", substitute(dicionario), sep=" "))
 
-  pb <- txtProgressBar(min = 0, max = tbloco, style = 3)
-  
-  arq <- file(pathname.in)
-  open(arq)
-  cont = 1
-  dados <- numeric(0)
-  dadostemp2 <- numeric(0)
-  
-  i=0
+  pb <- txtProgressBar(min = 0, max = (nlines/tbloco) * length(codigos), style = 3)
+
+  arq <- file(pathname.in, open="r")
+  dados <- NULL
+
+  process <- 0
+  cont <- TRUE
   while (cont) {
-    dadostemp <- scan(file = arq, what = "", sep = ";", nlines = tbloco, quiet = TRUE)
-    coluna <- substr(dadostemp, inicios[1], inicios[1] + tamanhos[1] - 1)
-    dadostemp2 <- data.frame(type.convert(coluna))
-    if (length(inicios) > 1)
-      for (k in 2:length(inicios)) {
-        coluna <- substr(dadostemp, inicios[k], inicios[k] + tamanhos[k] - 1)
-        dadostemp2 <- cbind(dadostemp2, data.frame(type.convert(coluna)))
-        process <- i*length(inicios) + k
-        setTxtProgressBar(pb, process)
-      }
-    i <- i + 1
-    if(length(inicios)==1){
-      process <- i*length(inicios) + 1 
+    bloco <- scan(file = arq, what = "", sep = "", nlines = tbloco, quiet = TRUE)
+    df.temp <- NULL
+    for (k in 1:length(inicios)) {
+      coluna <- substr(bloco, inicios[k], inicios[k] + tamanhos[k] - 1)
+      if(is.null(df.temp))
+        df.temp <- data.frame(type.convert(coluna))
+      else 
+        df.temp <- cbind(df.temp, data.frame(type.convert(coluna)))
+      process <- process + 1
       setTxtProgressBar(pb, process)
     }
-    if (length(dadostemp) < tbloco) 
-      cont = 0
-    rm(dadostemp)
-    dados <- rbind(dados, dadostemp2)
+    if(is.null(dados))
+      dados <- df.temp
+    else
+      dados <- rbind(dados, df.temp)
+    
+    if (length(bloco) < tbloco) 
+      cont <- FALSE
   }
   
   close(arq)
-  rm(dadostemp2)
+  rm(bloco, df.temp)
   colnames(dados) <- codigos
-
+  close(pb)
+  
   if(is.null(rotulos)){
-    close(pb)
-    cat("\n")
     return(dados)
   }
 
@@ -64,11 +63,7 @@ le.pesquisa <- function(dicionario, pathname.in, codigos, rotulos = NULL, tbloco
       tmp <- rotulos[rotulos$cod == colname, 2:3]
       dados[,n] <- factor(dados[,n], levels = tmp[,1], labels = tmp[,2])
     }
-    process <- i * length(inicios) + n
-    setTxtProgressBar(pb, process)
   }
   
-  close(pb)
-  cat("\n")
   return(dados)
 }

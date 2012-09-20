@@ -7,7 +7,8 @@
  IBGE surveys.  
 }
 \usage{
-le.pesquisa(dicionario, pathname.in, codigos, rotulos = NULL, tbloco = 2000)
+le.pesquisa(dicionario, pathname.in, codigos, rotulos = NULL, tbloco =
+2000, nlines)
 }
 
 \arguments{
@@ -24,17 +25,20 @@ le.pesquisa(dicionario, pathname.in, codigos, rotulos = NULL, tbloco = 2000)
   Array of characters with codes of the wanted variables to be read, as
   specified in dictionary.
 }
-  \item{tbloco}{
+  \item{rotulos}{
+  A optional variable formed by a data frame with 3 columns, supplied
+  with this package. Contains the length and initial information all
+  categorical variables contained in the microdata file.
+}
+\item{tbloco}{
   Integer that indicates the block size read. If not specified will be
   read in 2000 lines ever, an appropriate amount of a RAM 512MB
   computer. For a computer with less than 512MB of memory, \code{tbloco}
   must be less than 2000. For a machine with more 512MB of memory,
   \code{tbloco} may be larger than 2000, reducing the read time.
 }
-  \item{rotulos}{
-  A optional variable formed by a data frame with 3 columns, supplied
-  with this package. Contains the length and initial information all
-  categorical variables contained in the microdata file.
+\item{nlines}{
+  The number of lines of the file to be read.
 }
 }
 \details{
