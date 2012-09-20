@@ -9,4 +9,6 @@ Maintainer: Alexandre Rademaker <alexandre.rademaker@fgv.br>
 Description: This package contains the dictionaries for reading microdata
         from IBGE (Brazilian Institute of Geography and Statistics)
         surveys PNAD, PME and POF.
-License: GPL-2
+License: file LICENSE
+
+
