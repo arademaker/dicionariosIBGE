@@ -13,7 +13,6 @@ http://cran.r-project.org/web/packages/dicionariosIBGE/index.html
  * Alexandre Rademaker  (EMAp/FGV)
  * Rafael Fernandes Haeusler
 
-
 ## Usando o pacote
 
 Para instalar automaticamente a versao mais recente disponivel no
@@ -59,5 +58,27 @@ Tambem e possivel no Windows instalar a partir de um arquivo .zip com
 o conteudo do diretorio apos instalado (pacote pre-compilado). Neste
 caso, nao e necessario nenhum programa no path e nem o parametro
 type="source".
+
+
+## License
+
+<p></p>
+<a rel="license"
+href="http://creativecommons.org/licenses/by-sa/3.0/br/"><img
+alt="Creative Commons License" style="border-width:0"
+src="http://i.creativecommons.org/l/by-sa/3.0/br/88x31.png" /></a><br
+/><span xmlns:dct="http://purl.org/dc/terms/"
+href="http://purl.org/dc/dcmitype/Dataset" property="dct:title"
+rel="dct:type">dicionariosIBGE</span> by <a
+xmlns:cc="http://creativecommons.org/ns#" href="http://emap.fgv.br"
+property="cc:attributionName" rel="cc:attributionURL">EMAp, Getulio
+Vargas Foundation</a> is licensed under a <a rel="license"
+href="http://creativecommons.org/licenses/by-sa/3.0/br/">Creative
+Commons Attribution-ShareAlike 3.0 Brazil License</a>.<br />Based on a
+work at <a xmlns:dct="http://purl.org/dc/terms/"
+href="https://github.com/arademaker/dicionariosIBGE"
+rel="dct:source">github.com</a>.
+
+Take a look in the file LICENSE. 
 
 
