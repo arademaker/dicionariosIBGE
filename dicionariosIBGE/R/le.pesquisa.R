@@ -1,51 +1,23 @@
-le.pesquisa <-
-  function (dicionario, pathname.in, codigos, rotulos = NULL, tbloco = 2000) 
-{
-  
+le.pesquisa <- function(dicionario, pathname.in, codigos, rotulos = NULL, tbloco = 2000, nlines) {
+
   inicios <- numeric(0)
   tamanhos <- numeric(0)
   
-  if(!is.data.frame(dicionario)) 
-    stop(cat(paste("\n","Variable", dicionario,"is not a data.frame see documentation","\n")))
-  if(ncol(dicionario)!= 4)
-    stop(cat(paste("\n Number of columms in the dictionary entry is not right, must have 4 but have only",ncol(dicionario),".\n")))
+  if( !all(c("inicio","cod", "tamanho", "desc") == colnames(dicionario)) )
+    stop(paste("The", substitute(dicionario)," is not a valid object for 'dicionario' parameter",sep=" "))
+      
+  if( ! all(c("cod", "valor", "rotulo") == colnames(rotulos)) )
+    stop(paste("The", substitute(rotulos), "is not a valid object for 'rotulos' parameter", sep=" "))
   
-  num <- c()
-  col <- c("inicio","cod", "tamanho", "desc")
-  for(n in c(1:4)){
-    if(colnames(dicionario)[n]!= col[n])
-      num <- c(num,n)
-  }
-  if(length(num) != 0)
-    stop(cat(paste("\n The columm '",colnames(dicionario)[num],"' of '",deparse(substitute(dicionario)),"' is wrong or not in the specific place. \n",sep="")))
-
-  if(!is.null(rotulos)){
-    
-    num <- c()
-    col <- c("cod", "valor", "rotulo")
-    for(i in c(1:3)){
-      if(colnames(rotulos)[i]!= col[i])
-        num <- c(num,i)
-    }
-    if(length(num) != 0)
-      stop(cat(paste("\n The columm '",colnames(rotulos)[num],"' of '",deparse(substitute(rotulos)), "' is wrong or not in the specific place. \n",sep="")))
-
-  }
+  tmp <- merge(data.frame(cod = codigos, stringsAsFactors = FALSE), dicionario)
+  inicios <- tmp[,"inicio"]
+  tamanhos <- tmp[,"tamanho"]
+  rm(tmp)
   
-  
-  for (k in 1:length(codigos)) {
-    if (!codigos[k] %in% dicionario$cod) 
-      stop(cat(paste("\n Variable '", codigos[k], "' do not exist in the 2th columm of '",deparse(substitute(dicionario)),"', that contains possible variables. \n",sep="")))
-    inicios[k] <- dicionario$inicio[dicionario$cod == codigos[k]]
-    tamanhos[k] <- dicionario$tamanho[dicionario$cod == codigos[k]]
-  }
+  if ( length(inicios) == 0)
+      stop(paste("Variables do not exist in", substitute(dicionario), sep=" "))
 
-  lines <- as.numeric(strsplit(system(paste("wc -l",pathname.in,sep=" "),intern=TRUE),split=" ")[[1]][1]) 
-  max <- (lines/tbloco*length(inicios))  
-  if(!is.null(rotulos)){
-    max <- (lines/tbloco*length(inicios) + length(codigos))
-  }
-  pb <- txtProgressBar(min = 0, max = max, style = 3)
+  pb <- txtProgressBar(min = 0, max = tbloco, style = 3)
   
   arq <- file(pathname.in)
   open(arq)
@@ -53,21 +25,15 @@ le.pesquisa <-
   dados <- numeric(0)
   dadostemp2 <- numeric(0)
   
-  
-
   i=0
   while (cont) {
-    dadostemp <- scan(file = arq, what = "", sep = ";", nlines = tbloco, 
-                      quiet = TRUE)
-    coluna <- substr(dadostemp, inicios[1], inicios[1] + 
-                     tamanhos[1] - 1)
+    dadostemp <- scan(file = arq, what = "", sep = ";", nlines = tbloco, quiet = TRUE)
+    coluna <- substr(dadostemp, inicios[1], inicios[1] + tamanhos[1] - 1)
     dadostemp2 <- data.frame(type.convert(coluna))
     if (length(inicios) > 1)
       for (k in 2:length(inicios)) {
-        coluna <- substr(dadostemp, inicios[k], inicios[k] + 
-                         tamanhos[k] - 1)
+        coluna <- substr(dadostemp, inicios[k], inicios[k] + tamanhos[k] - 1)
         dadostemp2 <- cbind(dadostemp2, data.frame(type.convert(coluna)))
-        Sys.sleep(0.1)
         process <- i*length(inicios) + k
         setTxtProgressBar(pb, process)
       }
@@ -80,28 +46,25 @@ le.pesquisa <-
       cont = 0
     rm(dadostemp)
     dados <- rbind(dados, dadostemp2)
-    
   }
   
   close(arq)
   rm(dadostemp2)
   colnames(dados) <- codigos
 
-  if( is.null(rotulos) ){
+  if(is.null(rotulos)){
     close(pb)
     cat("\n")
     return(dados)
   }
 
-  
-  for(n in c(1:ncol(dados))){
-
-    if(colnames(dados)[n] %in% unique(rotulos$cod)){
-      dados[,n] <- factor(dados[,n],levels = subset(rotulos, cod == colnames(dados)[n])[,"valor"],
-                          labels = subset(rotulos,cod==colnames(dados)[n])[,"rotulo"])
+  for(n in 1:ncol(dados)){
+    colname <- colnames(dados)[n]
+    if(colname %in% rotulos$cod){
+      tmp <- rotulos[rotulos$cod == colname, 2:3]
+      dados[,n] <- factor(dados[,n], levels = tmp[,1], labels = tmp[,2])
     }
-    Sys.sleep(0.1)
-    process <- i*length(inicios) + n
+    process <- i * length(inicios) + n
     setTxtProgressBar(pb, process)
   }
   
@@ -109,4 +72,3 @@ le.pesquisa <-
   cat("\n")
   return(dados)
 }
-
