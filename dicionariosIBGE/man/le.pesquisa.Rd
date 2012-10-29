@@ -77,13 +77,13 @@ that your computer has at least 1GB of memory.
      # Set this \code{path} to point to the microdata file:
      dados <- le.pesquisa(dicionario=dicdom2009,
                           pathname.in=path,
-                          codigos=dicdom2009[c(4:12),2])
+                          codigos=dicdom2009[c(4:12),2],nlines=1000)
 
      #with \code{rotulos} != NULL
      # Set this \code{path} to point to the microdata file:
      dados <- le.pesquisa(dicionario=dicdom2009,
                           pathname.in=path,
-                          codigos=dicdom2009[c(4:12),2],rotulos=rotdom2009)
+                          codigos=dicdom2009[c(4:12),2],rotulos=rotdom2009,nlines=10)
                            
                           
     }
