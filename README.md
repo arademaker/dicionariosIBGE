@@ -1,5 +1,4 @@
 
-
 # Dicionarios IBGE
 
 Dicionarios de dados para leitura no R das pesquisas PNAD, PME e POF
@@ -7,11 +6,9 @@ do IBGE.  Link para o pacote no site do CRAN:
 
 http://cran.r-project.org/web/packages/dicionariosIBGE/index.html
 
-
-## Equipe
+## Responsável
 
  * Alexandre Rademaker  (EMAp/FGV)
- * Rafael Fernandes Haeusler
 
 ## Usando o pacote
 
@@ -39,19 +36,15 @@ anterior. Por exemplo:
 
 Para gerar um .tar.gz instalavel:
 
-    R CMD build [DIRETORIO]
+    R CMD build dicionariosIBGE/
 
 Instalando o pacote:
 
-    R CMD INSTALL pkg.tar.gz
-
-Ou, no R:
-
-    install.packages("pkg.tar.gz", repos=NULL)
+    install.packages("dicionariosIBGE_1.6.tar.gz", repos=NULL, type="source")
 
 
-No Windows, para instalar o pacote .tar.gz e necessario passar o
-parametro type="source" para a funcao. Isso requer que alguns
+Para instalar o pacote .tar.gz e necessario passar o parametro
+type="source" para a funcao. No Windows, isso requer que alguns
 programas estejam no path do sistema (vide Rtools).
 
 Tambem e possivel no Windows instalar a partir de um arquivo .zip com
@@ -59,6 +52,17 @@ o conteudo do diretorio apos instalado (pacote pre-compilado). Neste
 caso, nao e necessario nenhum programa no path e nem o parametro
 type="source".
 
+
+## ChangeLog
+
+- O pacote foi desenvolvido a partir de uma versão do IBGE que foi
+  descontinuada e nunca publicada no CRAN. As adaptações foram
+  planejadas e iniciadas por Alexandre Rademaker que supervisionou o
+  trabalho de Rafael Fernandes Haeusler, então estagiário na EMAp.
+
+- Versão 1.6 de 16/06/2014. Aceitei contribuição de
+  [Flávio Barros](https://github.com/flaviobarros) com os dicionários
+  da PNAD 2012.
 
 ## License
 
