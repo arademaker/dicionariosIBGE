@@ -60,29 +60,11 @@ type="source".
   planejadas e iniciadas por Alexandre Rademaker que supervisionou o
   trabalho de Rafael Fernandes Haeusler, então estagiário na EMAp.
 
-- Versão 1.6 de 16/06/2014. Aceitei contribuição de
+- Versão 1.6 de 13/08/2014. Aceitei contribuição de
   [Flávio Barros](https://github.com/flaviobarros) com os dicionários
   da PNAD 2012.
 
 ## License
 
-<p></p>
-<a rel="license"
-href="http://creativecommons.org/licenses/by-sa/3.0/br/"><img
-alt="Creative Commons License" style="border-width:0"
-src="http://i.creativecommons.org/l/by-sa/3.0/br/88x31.png" /></a><br
-/><span xmlns:dct="http://purl.org/dc/terms/"
-href="http://purl.org/dc/dcmitype/Dataset" property="dct:title"
-rel="dct:type">dicionariosIBGE</span> by <a
-xmlns:cc="http://creativecommons.org/ns#" href="http://emap.fgv.br"
-property="cc:attributionName" rel="cc:attributionURL">EMAp, Getulio
-Vargas Foundation</a> is licensed under a <a rel="license"
-href="http://creativecommons.org/licenses/by-sa/3.0/br/">Creative
-Commons Attribution-ShareAlike 3.0 Brazil License</a>.<br />Based on a
-work at <a xmlns:dct="http://purl.org/dc/terms/"
-href="https://github.com/arademaker/dicionariosIBGE"
-rel="dct:source">github.com</a>.
-
-Take a look in the file LICENSE. 
-
+See DESCRIPTION in the source directory dicionariosIBGE/
 
